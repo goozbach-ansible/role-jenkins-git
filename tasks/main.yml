@@ -1,2 +1,22 @@
 ---
-# tasks file for jenkins-git
+- name: install jenkins packages loop
+  yum: name={{ item }} state=installed
+  with_items:
+    - git
+  tags:
+    - jenkins-git
+
+- name: download jenkins plugins
+  get_url: dest=/var/lib/jenkins/plugins url=http://updates.jenkins-ci.org/latest/{{ item }}
+  notify: 
+    # should be in goozbach.jenkins role
+    - reload jenkins
+  with_items:
+    - git.hpi
+    - git-client.hpi
+    - github-api.hpi
+    - github.hpi
+    - github-oauth.hpi
+    - scm-api.hpi
+  tags:
+    - jenkins-git
