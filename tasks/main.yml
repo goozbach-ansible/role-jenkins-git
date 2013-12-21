@@ -1,12 +1,12 @@
 ---
-- name: install jenkins packages loop
+- name: install jenkins-git packages loop
   yum: name={{ item }} state=installed
   with_items:
     - git
   tags:
     - jenkins-git
 
-- name: download jenkins plugins
+- name: download jenkins-git plugins
   get_url: dest=/var/lib/jenkins/plugins url=http://updates.jenkins-ci.org/latest/{{ item }}
   notify: 
     # should be in goozbach.jenkins role
