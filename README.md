@@ -1,29 +1,34 @@
-Role Name
+Jenkins Git Role
 ========
 
-A brief description of the role goes here.
+Builds on `goozbach.jenkins` to enable git support including github and others.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by the ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role uses `git` but installs it as one of the first tasks.
+In the future there may be need for modules which are needed for the GitHub API.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+* `jenkins_git_plugins` -- List of Jenkins plugins to install. (Default `[git.hpi, git-client.hpi, github-api.hpi, github.hpi, github-oauth.hpi, scm-api.hpi]`
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role depends on `goozbach.jenkins` which in turn depends on `goozbach.EPEL`. 
+The role `goozbach.EPEL` does not yet support EL5. 
+
+The handler `reload jenkins` comes from the role `goozbach.jenkins`.
 
 License
 -------
 
-BSD
+GPLv2
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Derek Carter <derek@goozbach.com>
+Goozbach Infrastructure Solutions LLC http://goozbach.com

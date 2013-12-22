@@ -11,12 +11,6 @@
   notify: 
     # should be in goozbach.jenkins role
     - reload jenkins
-  with_items:
-    - git.hpi
-    - git-client.hpi
-    - github-api.hpi
-    - github.hpi
-    - github-oauth.hpi
-    - scm-api.hpi
+  with_items: jenkins_git_plugins
   tags:
     - jenkins-git
